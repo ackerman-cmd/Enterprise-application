@@ -1,4 +1,4 @@
-package com.java.app.enterprise_application.utils.log;
+package com.java.app.enterprise_application.utils.aspects;
 
 
 

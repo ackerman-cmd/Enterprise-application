@@ -12,11 +12,19 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "meal")
+
+@NamedQueries({
+        @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id = :id AND m.user.id = :user_id"),
+        @NamedQuery(name = Meal.ALL_SORTED, query = "SELECT m FROM Meal m WHERE m.id = :id ORDER BY m.dateTime DESC "),
+        @NamedQuery(name = Meal.GET, query = "SELECT m FROM Meal m WHERE m.id = :id AND m.user.id = :user_id"),
+        @NamedQuery(name = Meal.GET_BETWEEN, query = "SELECT m FROM Meal m WHERE m.user.id = :user_id AND m.dateTime >= :startDateTime AND m.dateTime < :endDateTime ORDER BY m.dateTime DESC")
+})
 public class Meal extends AbstractBaseEntity {
-    private static final String DELETE = "meal.delete";
-    private static final String ALL_SORTED = "meal.getAll";
-    private static final String GET = "meal.get";
-    private static final String GET_BETWEEN = "meal.getBetween";
+    public static final String DELETE = "meal.delete";
+    public static final String ALL_SORTED = "meal.getAll";
+    public static final String GET = "meal.get";
+    public static final String GET_BETWEEN = "meal.getBetween";
+
 
 
     @Column(name = "date_time", nullable = false)

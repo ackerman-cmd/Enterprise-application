@@ -16,6 +16,12 @@ import static com.java.app.enterprise_application.utils.MealsUtil.DEFAULT_CALORI
 
 @Entity
 @Table(name = "user")
+
+@NamedQueries({
+        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id = :id"),
+        @NamedQuery(name = User.BY_EMAIL, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email = :email"),
+        @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u ORDER BY name, email")
+})
 public class User extends AbstractNamedEntity {
 
     public static final String DELETE = "User.delete";
