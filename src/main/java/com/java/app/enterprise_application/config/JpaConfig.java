@@ -1,7 +1,7 @@
 package com.java.app.enterprise_application.config;
 
 
-import com.java.app.enterprise_application.repository.datajpa.DataJpaMealRepository;
+
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -60,7 +59,6 @@ public class JpaConfig {
         pr.put("hibernate.use_sql_comments", true);
         pr.put("hibernate.jpa_proxy_compliance", "false");
         pr.put("hibernate.type.descriptor.sql.BasicBinder", "TRACE");
-        pr.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 
         entityManagerFactoryBean.setJpaProperties(pr);
 
