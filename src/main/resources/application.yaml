@@ -8,6 +8,11 @@ spring:
     username: postgres
     password: password
     url: jdbc:postgresql://localhost:5433/postgres
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/initDB.sql
+      data-locations: classpath:db/populateDB.sql
   jpa:
     hibernate:
       ddl-auto: update

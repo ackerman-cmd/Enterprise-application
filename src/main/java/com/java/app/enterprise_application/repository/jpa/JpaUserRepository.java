@@ -7,10 +7,12 @@ import com.java.app.enterprise_application.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
+@Transactional(readOnly = true)
 public class JpaUserRepository implements UserRepository {
 
     private final EntityManager em;
@@ -20,18 +22,22 @@ public class JpaUserRepository implements UserRepository {
     }
 
     @Override
+    @Transactional
     public User save(User user) {
         if (user.isNew()) {
             em.persist(user);
             return user;
+        } else {
+            return em.merge(user);
         }
-        return em.merge(user);
+
     }
 
     @Override
+    @Transactional
     public boolean delete(int id) {
         return em.createNamedQuery(User.DELETE)
-                .setParameter("user_id", id)
+                .setParameter("id", id)
                 .executeUpdate() != 0;
     }
 

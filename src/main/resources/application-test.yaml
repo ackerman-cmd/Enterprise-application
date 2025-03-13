@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:15:///testdb  # Testcontainers создаст базу
+    username: testuser
+    password: testpass
+  jpa:
+    hibernate:
+      ddl-auto: none  # Используем SQL-скрипт для инициализации
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      mode: always  # Всегда выполнять SQL-скрипты
+      schema-locations: classpath:db/initDB.sql
+      data-locations: classpath:db/populateDB.sql
+  liquibase:
+    enabled: false  # Отключаем, если используем SQL-скрипты
+logging:
+  level:
+    root: DEBUG  # Включаем полное логирование
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

@@ -15,7 +15,7 @@ import java.util.*;
 import static com.java.app.enterprise_application.utils.MealsUtil.DEFAULT_CALORIES_PER_DAY;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 
 @NamedQueries({
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id = :id"),
@@ -76,6 +76,9 @@ public class User extends AbstractNamedEntity {
         this.enabled = enabled;
         this.registered = registered;
         setRoles(roles);
+    }
+    public User( String name, String email, String password, Role... roles) {
+        this(null, name, email, password, DEFAULT_CALORIES_PER_DAY, true, new Date(), List.of(roles));
     }
 
     public String getEmail() {
