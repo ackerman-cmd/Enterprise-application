@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{meal.title}"></title>
+    <style>
+        .normal {
+            color: green;
+        }
+        .excess {
+            color: red;
+        }
+    </style>
+    <th:block th:replace="~{fragments/headTag :: headTag}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{fragments/bodyHeader :: bodyHeader}"></th:block>
+<section>
+    <h3><a href="/static" th:href="@{/}" th:text="#{app.home}"></a></h3>
+    <hr/>
+    <h2 th:text="#{meal.add}"></h2>
+    <a href="/meals/create" th:href="@{/meals/create}" th:text="#{meal.add}"></a>
+    <br><br>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+        <tr>
+            <th th:text="#{meal.date}"></th>
+            <th th:text="#{meal.description}"></th>
+            <th th:text="#{meal.calories}"></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="meal : ${meals}" th:class="${meal.excess} ? 'excess' : 'normal'">
+            <td th:text="${T(com.java.app.enterprise_application.utils.DateTimeUtil).toString(meal.dateTime)}"></td>
+            <td th:text="${meal.description}"></td>
+            <td th:text="${meal.calories}"></td>
+            <td>
+                <a th:href="@{/meals/update(id=${meal.id})}" th:text="#{meal.update}"></a>
+            </td>
+            <td>
+                <a th:href="@{/meals/delete(id=${meal.id})}" th:text="#{meal.delete}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>

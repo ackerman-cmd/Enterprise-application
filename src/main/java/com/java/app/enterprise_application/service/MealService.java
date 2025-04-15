@@ -4,6 +4,7 @@ package com.java.app.enterprise_application.service;
 import com.java.app.enterprise_application.model.Meal;
 import com.java.app.enterprise_application.repository.MealRepository;
 import com.java.app.enterprise_application.utils.aspects.Log;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -21,7 +22,7 @@ public class MealService {
 
     private final MealRepository mealRepository;
 
-    public MealService(MealRepository mealRepository) {
+    public MealService(@Qualifier("dataJpaMealRepository") MealRepository mealRepository) {
         this.mealRepository = mealRepository;
     }
 

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JpaMealRepositoryTest extends SpringBootApplicationTest {
 
+    @Qualifier("dataJpaMealRepository")
     @Autowired
     private MealRepository mealRepository;
 

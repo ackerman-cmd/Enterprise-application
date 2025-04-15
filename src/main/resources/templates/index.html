@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/headTag :: headTag}" />
+</head>
+<body>
+<th:block th:replace="~{fragments/bodyHeader :: bodyHeader}" />
+<br>
+<section class="login-form">
+    <form method="post" th:action="@{/users}">
+        <label>
+            <span th:text="#{app.login}"></span>:
+            <select name="userId">
+                <option value="100000" selected th:text="#{user.role}"></option>
+                <option value="100001" th:text="#{admin.role}"></option>
+            </select>
+        </label>
+        <button type="submit" th:text="#{common.select}"></button>
+    </form>
+</section>
+<th:block th:replace="~{fragments/footer :: footer}" />
+</body>
+</html>

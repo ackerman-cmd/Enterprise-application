@@ -19,3 +19,8 @@ spring:
     show-sql: true
   profiles:
     active: datajpa, jdbc
+  security:
+    user:
+      name: user
+      password: pass2
+

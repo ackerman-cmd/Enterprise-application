@@ -1,0 +1,10 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+  <header class="nav-header" th:fragment="bodyHeader">
+    <nav>
+      <a th:href="@{/meals}" th:text="#{app.title}"></a> |
+      <a th:href="@{/users}" th:text="#{user.title}"></a> |
+      <a th:href="@{/}" th:text="#{app.home}"></a>
+    </nav>
+  </header>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/headTag :: headTag}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{fragments/bodyHeader :: bodyHeader}"></th:block>
+<section>
+    <h3 th:text="#{user.title}"></h3>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+        <tr>
+            <th th:text="#{user.name}"></th>
+            <th th:text="#{user.email}"></th>
+            <th th:text="#{user.roles}"></th>
+            <th th:text="#{user.active}"></th>
+            <th th:text="#{user.registered}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.name}"></td>
+            <td><a th:href="@{'mailto:' + ${user.email}}" th:text="${user.email}"></a></td>
+            <td th:text="${user.roles}"></td>
+            <td th:text="${user.enabled}"></td>
+            <td th:text="${#dates.format(user.registered, 'dd-MM-yyyy')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>

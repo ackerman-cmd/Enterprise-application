@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="#{meal.form.title}"></title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<section>
+  <h3><a th:href="@{/}" th:text="#{app.home}"></a></h3>
+  <hr>
+  <h2 th:text="${meal.id == null} ? #{meal.create.title} : #{meal.edit.title}"></h2>
+  <form th:object="${meal}" th:action="@{/meals}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <dl>
+      <dt th:text="#{meal.dateTime}"></dt>
+      <dd>
+        <label>
+          <input type="datetime-local" th:field="*{dateTime}" required/>
+        </label>
+      </dd>
+    </dl>
+    <dl>
+      <dt th:text="#{meal.description}"></dt>
+      <dd>
+        <label>
+          <input type="text" th:field="*{description}" size="40" required/>
+        </label>
+      </dd>
+    </dl>
+    <dl>
+      <dt th:text="#{meal.calories}"></dt>
+      <dd>
+        <label>
+          <input type="number" th:field="*{calories}" required/>
+        </label>
+      </dd>
+    </dl>
+    <button type="submit" th:text="#{form.save}"></button>
+    <button type="button" th:onclick="'window.history.back()'" th:text="#{form.cancel}"></button>
+  </form>
+</section>
+</body>
+</html>
